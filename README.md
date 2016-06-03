@@ -6,6 +6,9 @@ The difference between the maximum and minimum zoom level allowed on your map is
 
 ## How to use
 
+[View a demo](http://john-kilgo.github.io/L.Marker.AutoResize)
+
+
 Include after Leaflet:
 ```
 <script src="../marker-resize.js"></script>
@@ -35,6 +38,5 @@ Create a marker using these icons (required parameter is iconArray, an array of 
 L.autoResizeMarker([42.5, -71.239], {iconArray: [iconSmaller, iconMedium, iconLarge]}).addTo(mymap);
 ```
 In this example, the smallest icon is shown when zoomed out, the medium icon when in the mid-range of the zoom, and the largest icon when zoomed in to the map. Reversing the order would have the smallest icon shown when the map is zoomed in and the large icon shown when zoomed out, in this example.
-
 
 
