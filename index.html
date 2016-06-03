@@ -59,7 +59,7 @@ var icon1 = new MyIcon({iconSize: [30, 30], iconAnchor: [15, 30]}),
 		<h4>Create a marker</h4>
 		<p>Required option is <b>iconArray</b>, an array of exactly three icons.</p>
 		<pre><code>
-L.autoResizeMarker([42.5, -71.239], {iconArray: [icon1, icon2, icon3]}).addTo(mymap);
+L.autoResizeMarker([42.486, -71.236], {iconArray: [icon1, icon2, icon3]}).addTo(mymap);
 		</code></pre>
 
 		<div id="mapid"></div>
@@ -73,11 +73,11 @@ L.autoResizeMarker([42.5, -71.239], {iconArray: [icon1, icon2, icon3]}).addTo(my
 				}
 			})
 
-			var icon1 = new MyIcon({iconSize: [30, 30], iconAnchor: [15, 30]}),
-				icon2 = new MyIcon({iconSize: [50, 50], iconAnchor: [25, 50]}),
-				icon3 = new MyIcon({iconSize: [60, 60], iconAnchor: [30, 60]});
+			var icon1 = new MyIcon({iconSize: [32, 32], iconAnchor: [16, 32]}),
+			    icon2 = new MyIcon({iconSize: [96, 96], iconAnchor: [48, 96]}),
+			    icon3 = new MyIcon({iconSize: [256, 256], iconAnchor: [128, 256]});
 
-		  	L.autoResizeMarker([42.5, -71.239], {iconArray: [icon1, icon2, icon3]}).addTo(mymap);
+			L.autoResizeMarker([42.486, -71.236], {iconArray: [icon1, icon2, icon3]}).addTo(mymap);
 		  	
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamtpbGdvIiwiYSI6ImNpb29zZTNtbDAwMWF1cWtxMWg2Nm80enEifQ.GGjhjpGfyEqw04J_vwg03Q', {
 			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
