@@ -22,7 +22,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
-/* Auto adjusting marker */
+/* The Auto adjusting marker */
 L.Marker.AutoResize = L.Marker.extend({
 
 	options: {
@@ -43,8 +43,8 @@ L.Marker.AutoResize = L.Marker.extend({
 				options.iconArray[2] = options.iconArray[1];
 			} else {
 				options.iconArray = [new L.Icon.Default(),
-									 new L.Icon.Default(),
-									 new L.Icon.Default()];
+					 	     new L.Icon.Default(),
+						     new L.Icon.Default()];
 			}
 		}
 
@@ -71,11 +71,11 @@ L.Marker.AutoResize = L.Marker.extend({
 	_updateZoomend: function() {
 
 		var map = this._map,
-			icons = this.options.iconArray,
-			zoom = map.getZoom(),
-			min = map.getMinZoom() || 2,
-			max = map.getMaxZoom() || 20,
-			zoomed, outer;
+		    icons = this.options.iconArray,
+		    zoom = map.getZoom(),
+		    min = map.getMinZoom() || 2,
+		    max = map.getMaxZoom() || 20,
+		    zoomed, outer;
 
 		zoomed = Math.ceil((max - min) * (2/3) + min);
 		outer  = Math.ceil((max - min) * (1/3) + min);
@@ -92,8 +92,7 @@ L.Marker.AutoResize = L.Marker.extend({
 		if (zoom >= zoomed) {
 			if (this.options.icon === icons[2]) {
 				return;
-			}
-			else {
+			} else {
 				this.options.icon = icons[2];
 				this._initIcon(); 
 			}
@@ -101,8 +100,7 @@ L.Marker.AutoResize = L.Marker.extend({
 		} else if (zoom < zoomed && zoom > outer) {
 			if (this.options.icon === icons[1]) {
 				return;
-			}
-			else {
+			} else {
 				this.options.icon = icons[1];
 				this._initIcon();
 			}
@@ -110,8 +108,7 @@ L.Marker.AutoResize = L.Marker.extend({
 		} else if (zoom <= outer) {
 			if (this.options.icon === icons[0]) {
 				return;
-			}
-			else {
+			} else {
 				this.options.icon = icons[0];
 				this._initIcon();
 			}
@@ -125,3 +122,4 @@ L.Marker.AutoResize = L.Marker.extend({
 L.autoResizeMarker = function(latlng, options) {
 	return new L.Marker.AutoResize(latlng, options);
 };
+
