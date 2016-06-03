@@ -57,11 +57,11 @@ L.Marker.AutoResize = L.Marker.extend({
 	update: function () {
 
 		if (this._icon) {
+			this._updateZoomend();
 
 			var pos = this._map.latLngToLayerPoint(this._latlng).round();
 			this._setPos(pos);
 
-			this._updateZoomend(); /* Perform update of icon depending upon zoom status. */
 		}
 
 		return this;
@@ -73,21 +73,21 @@ L.Marker.AutoResize = L.Marker.extend({
 		var map = this._map,
 		    icons = this.options.iconArray,
 		    zoom = map.getZoom(),
-		    min = map.getMinZoom() || 2,
-		    max = map.getMaxZoom() || 20,
+		    min = isFinite(map.getMinZoom()) ? map.getMinZoom() : 2,
+		    max = isFinite(map.getMaxZoom()) ? map.getMaxZoom() :20,
 		    zoomed, outer;
 
 		zoomed = Math.ceil((max - min) * (2/3) + min);
 		outer  = Math.ceil((max - min) * (1/3) + min);
 
-		/*
+		/**/
 		console.log("in _updateZoomend")
 		console.log("	zoom: " + zoom)
 		console.log("	min: " + min)
 		console.log("	max: " + max)
 		console.log("	zoomed: " + zoomed)
 		console.log("	outer: " + outer)
-		*/
+		/**/
 
 		if (zoom >= zoomed) {
 			if (this.options.icon === icons[2]) {
