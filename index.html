@@ -2,55 +2,91 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+ 	<meta charset="utf-8">
 
-  <title>Leaflet Marker Resize: Example</title>
-  <meta name="description" content="Leaflet Marker Resize Plugin">
-  <meta name="author" content="The MITRE Corporation">
+  	<title>Leaflet Marker Resize: Example</title>
+  	<meta name="description" content="Leaflet Marker Resize Plugin">
+  	<meta name="author" content="The MITRE Corporation">
 
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-  <script src="marker-resize.js"></script>
+  	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  	<script src="marker-resize.js"></script>
 
-  <style>
-  	#mapid { height: 450px; width: 800px; margin-left: auto; margin-right: auto; }
-  </style>
+  	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/default.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+
+  	<style>
+  		#mapid { height: 450px; width: 100% }
+  		#outer {margin-left: auto; margin-right: auto; width: 80%;}
+  	</style>
 
 </head>
 
 <body>
-	 <div id="mapid"></div>
+
+	<script>hljs.initHighlightingOnLoad();</script>
+
+	<div id="outer">
+
+		<h1>L.Marker.AutoResize</h1>
+		<h2>A Leaflet plugin for automatic marker resizing based on zoom level</h2>
+
+		<h2>Get the plugin</h2>
+		<p>The most up to date code is found in <i>marker-resize.js</i> located <a href="https://github.com/john-kilgo/L.Marker.AutoResize">at the github repo</a>. Currently tested with Leaflet 0.7.7.</p>
+
+		<h2>Example</h2>
+		<p>View the example on a separate page <a href="demos/example.html">here</a>.</p>
 
 
-	  <script type="text/javascript">
-	  	var mymap = L.map('mapid').setView([42.491, -71.239], 12);
+		<h4>Include the plugin in the head section of your page</h4>
+		<pre><code>
+&lt;script src=&quot;/path/to/marker-resize.js&quot;&gt;&lt;/script&gt;
+		</code></pre>
 
-		var icon1 = L.icon({
-			iconUrl: 'demos/example-marker.png',
-			iconSize: [30, 30]
-		});
-		var icon2 = L.icon({
-			iconUrl: 'demos/example-marker.png',
-			iconSize: [50, 50]
-		});
-		var icon3 = L.icon({
-			iconUrl: 'demos/example-marker.png',
-			iconSize: [80, 80]
-		});
+		<h4>Create icons</h4>
+		<pre><code>
+var MyIcon = L.Icon.extend({
+	options: {
+		iconUrl: 'path/to/image.png'
+	}
+});
 
-	  	L.autoResizeMarker([42.5, -71.239], {iconArray: [icon1, icon2, icon3]}).addTo(mymap);
-  	
+var icon1 = new MyIcon({iconSize: [30, 30]}),
+	icon2 = new MyIcon({iconSize: [50, 50]}),
+	icon3 = new MyIcon({iconSize: [60, 60]});
+		</code></pre>
 
-		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamtpbGdvIiwiYSI6ImNpb29zZTNtbDAwMWF1cWtxMWg2Nm80enEifQ.GGjhjpGfyEqw04J_vwg03Q', {
-		    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-		    maxZoom: 18,
-		    id: 'jkilgo.0830hkko',
-		    accessToken: 'pk.eyJ1IjoiamtpbGdvIiwiYSI6ImNpb29zZTNtbDAwMWF1cWtxMWg2Nm80enEifQ.GGjhjpGfyEqw04J_vwg03Q'
-		}).addTo(mymap);
+		<h4>Create a marker</h4>
+		<p>Required option is <b>iconArray</b>, an array of exactly three icons.</p>
+		<pre><code>
+L.autoResizeMarker([42.5, -71.239], {iconArray: [icon1, icon2, icon3]}).addTo(mymap);
+		</code></pre>
 
+		<div id="mapid"></div>
 
+	 	<script type="text/javascript">
+	  		var mymap = L.map('mapid').setView([42.491, -71.239], 12);
 
-	  </script>
+			var MyIcon = L.Icon.extend({
+				options: {
+					iconUrl: 'demos/example-marker.png'
+				}
+			})
+
+			var icon1 = new MyIcon({iconSize: [30, 30]}),
+				icon2 = new MyIcon({iconSize: [50, 50]}),
+				icon3 = new MyIcon({iconSize: [60, 60]});
+
+		  	L.autoResizeMarker([42.5, -71.239], {iconArray: [icon1, icon2, icon3]}).addTo(mymap);
+	  	
+
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamtpbGdvIiwiYSI6ImNpb29zZTNtbDAwMWF1cWtxMWg2Nm80enEifQ.GGjhjpGfyEqw04J_vwg03Q', {
+			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			    maxZoom: 18,
+			    id: 'jkilgo.0830hkko',
+			    accessToken: 'pk.eyJ1IjoiamtpbGdvIiwiYSI6ImNpb29zZTNtbDAwMWF1cWtxMWg2Nm80enEifQ.GGjhjpGfyEqw04J_vwg03Q'
+			}).addTo(mymap);
+	  	</script>
 
 </body>
 </html>
