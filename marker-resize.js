@@ -38,7 +38,7 @@ L.Marker.AutoResize = L.Marker.extend({
 
 		// Did the user supply 3 icons?
 		if (options.iconArray.length !== 3) {
-			console.log("WARNING :: 3 icons not defined in L.Marker.AutoResize, an ineffient Marker will be produced.")
+			console.log("WARNING :: 3 icons not defined in L.Marker.AutoResize, an inefficient Marker will be produced.")
 			if (options.iconArray[0] instanceof L.Icon) {
 				options.iconArray[1] = options.iconArray[0];
 				options.iconArray[2] = options.iconArray[0];
